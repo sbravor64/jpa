@@ -1,8 +1,10 @@
 import model.Alumno;
-import model.BBDDConnect;
 import model.Clase;
 import model.Instituto;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -10,14 +12,19 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class MenuPrincipal extends BBDDConnect{
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
+public class MenuPrincipal{
 
     Scanner scanner = new Scanner(System.in);
 
     MenuActualizarDatos menuActualizarDatos = new MenuActualizarDatos();
+
+    protected EntityManagerFactory emf;
+    protected EntityManager em;
+
+    public MenuPrincipal(){
+        emf= Persistence.createEntityManagerFactory("damPersistence");
+        em = emf.createEntityManager();
+    }
 
     public void show() throws IOException, JAXBException {
         System.out.println("MENU");
