@@ -1,5 +1,4 @@
 import model.Alumno;
-import model.BBDDConnect;
 import model.Clase;
 import model.Instituto;
 
